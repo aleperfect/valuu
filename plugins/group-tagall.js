@@ -1,1 +1,20 @@
-const handler=async(_0x395023,{isOwner:_0x33d6e8,isAdmin:_0x43094f,conn:_0x57f962,text:_0x3bf8c1,participants:_0x325919,args:_0x4eac84,command:_0x5c6556,usedPrefix:_0x1422e7})=>{if(_0x1422e7=='a'||_0x1422e7=='A')return;if(!(_0x43094f||_0x33d6e8)){global['dfail']('admin',_0x395023,_0x57f962);throw![];}const _0xe26e88=_0x4eac84['join']` `,_0x5cc44a='*𝙼𝙴𝙽𝚂𝙰𝙹𝙴:*\x20'+_0xe26e88;let _0x44f039='🧩𝗧𝗮𝗴𝗮𝗹𝗹🧩\x0a\x0a'+_0x5cc44a+'\x0a\x0a';for(const _0x2ddc45 of _0x325919){_0x44f039+='🔮\x20@'+_0x2ddc45['id']['split']('@')[0x0]+'\x0a';}_0x44f039+='*▌│█║▌║▌║║▌║▌║▌║█*',_0x57f962['sendMessage'](_0x395023['chat'],{'text':_0x44f039,'mentions':_0x325919['map'](_0x30bc33=>_0x30bc33['id'])});};handler['help']=['tagall\x20<mesaje>','invocar\x20<mesaje>'],handler['tags']=['group'],handler['command']=/^(tagall|invocar|invocacion|todos|invocación)$/i,handler['admin']=!![],handler['group']=!![],handler['register']=!![],handler['group']=!![];export default handler;
+let handler = async(m, { isOwner, isAdmin, conn, text, participants, args, command }) => {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}
+let pesan = args.join` `
+let oi = `*🛍️https://chat.whatsapp.com/CCDGO1lIuH3Ggr4nA44cbY* ${pesan}`
+let teks = `*⬇️Venta de 🤖 ,regedits 🖥️📱 ,sensibilidades📱 ,+ 30 metodos ,cuentas ff y mass⬇️*
+ ${oi}\n\n🛍️ *@Ale.izn_20:*\n`
+for (let mem of participants) {
+teks += `⭐ @${mem.id.split('@')[0]}\n`}
+teks += `➤ 𝐑𝐞𝐚𝐝𝐳 𝐀𝐥𝐞𝐢𝐳𝐧`
+conn.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, )
+}
+handler.help = ['tagall <mesaje>','invocar <mesaje>']
+handler.tags = ['group']
+handler.command = /^(tagall|invocar|invocacion|todos|invocación|aviso|despierten)$/i
+handler.admin = true
+handler.group = true
+export default handler
