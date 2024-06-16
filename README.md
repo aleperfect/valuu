@@ -86,4 +86,8 @@ ESCRIBE LOS SIGUIENTES COMANDOS UNO POR UNO:
 `Ale __________ Ale?`
 
 ![Snake animation](https://github.com/GataNina-Li/GataNina-Li/blob/output/github-contribution-grid-snake.svg)
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> b5a2d71368e77a1d00bcde0e1ccb262a8c57ea90
