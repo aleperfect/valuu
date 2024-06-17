@@ -1,1 +1,16 @@
-const handler=async(_0x4fc7e9,{usedPrefix:_0x2ae9ff})=>{try{delete global['chatgpt']['data']['users'][_0x4fc7e9['sender']],_0x4fc7e9['reply']('*[❗]\x20𝚂𝙴\x20𝙴𝙻𝙸𝙼𝙸𝙽𝙾\x20𝙲𝙾𝙽\x20𝙴𝚇𝙸𝚃𝙾\x20𝙴𝙻\x20𝙷𝙸𝚂𝚃𝙾𝚁𝙸𝙰𝙻\x20𝙳𝙴\x20𝙼𝙴𝙽𝚂𝙰𝙹𝙴𝚂\x20𝙴𝙽𝚃𝚁𝙴\x20𝚄𝚂𝚃𝙴𝙳\x20𝚈\x20𝙲𝙷𝙰𝚃𝙶𝙿𝚃\x20(𝙸𝙰)*\x0a\x0a*—◉\x20𝚁𝙴𝙲𝚄𝙴𝚁𝙳𝙴\x20𝚀𝚄𝙴\x20𝙿𝚄𝙴𝙳𝙴\x20𝚄𝚃𝙸𝙻𝙸𝚉𝙰𝚁\x20𝙴𝚂𝚃𝙴\x20𝙲𝙾𝙼𝙰𝙽𝙳𝙾\x20𝙲𝚄𝙰𝙽𝙳𝙾\x20𝚃𝙴𝙽𝙶𝙰\x20𝙰𝙻𝙶𝚄𝙽\x20𝙴𝚁𝚁𝙾𝚁\x20𝙴𝙽\x20𝙴𝙻\x20𝙲𝙾𝙼𝙰𝙽𝙳𝙾\x20'+_0x2ae9ff+'chatgpt2\x20O\x20'+_0x2ae9ff+'ia2*');}catch(_0x5ecd11){console['log'](_0x5ecd11);throw'*[❗]\x20𝙴𝚁𝚁𝙾𝚁,\x20𝚅𝚄𝙴𝙻𝚅𝙰\x20𝙰\x20𝙸𝙽𝚃𝙴𝙽𝚃𝙰𝚁𝙻𝙾*';}};handler['command']=['delchatgpt'],handler['register']=!![],handler['group']=!![];export default handler;
+const handler = async (m, {usedPrefix}) => {
+    const datas = global
+    const idioma = datas.db.data.users[m.sender].language
+    const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+    const tradutor = _translate.plugins.herramientas_chatgpt_del
+  
+    try {
+      delete global.chatgpt.data.users[m.sender];
+      m.reply(`${tradutor.texto1} ${usedPrefix}chatgpt2 O ${usedPrefix}ia2*`);
+    } catch (error1) {
+      console.log(error1);
+      throw tradutor.texto2;
+    }
+  };
+  handler.command = ['delchatgpt'];
+  export default handler;

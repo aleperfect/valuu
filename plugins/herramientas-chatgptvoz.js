@@ -1,2 +1,135 @@
+/* -------------------------------------------------------*/
+/* [❗]                      [❗]                      [❗] */
+/*                                                       */
+/*       |- [ ⚠ ] - CREDITOS DEL CODIGO - [ ⚠ ] -|      */
+/*     —◉ DESAROLLADO POR OTOSAKA:                       */
+/*     ◉ Otosaka (https://github.com/6otosaka9)          */
+/*                                                       */
+/*     —◉ FT:                                            */
+/*     ◉ BrunoSobrino (https://github.com/BrunoSobrino)  */
+/*                                                       */
+/* [❗]                      [❗]                      [❗] */
+/* -------------------------------------------------------*/
+import fetch from 'node-fetch';
+import gtts from 'node-gtts';
+import {readFileSync, unlinkSync} from 'fs';
+import {join} from 'path';
+import axios from 'axios';
+import translate from '@vitalets/google-translate-api';
+import {Configuration, OpenAIApi} from 'openai';
+const configuration = new Configuration({organization: global.openai_org_id, apiKey: global.openai_key});
+const openaiii = new OpenAIApi(configuration);
+const idioma = 'es'
+//const sistema1 = await fetch(`https://raw.githubusercontent.com/Skidy89/chat-gpt-jailbreak/main/Text.txt`).then(v => v.text());
+const sistema1 = `Actuaras como un Bot de WhatsApp el cual fue creado por elrebelde, tu seras The-LoliBot-MD`;
+const handler = async (m, {conn, text, usedPrefix, command}) => {
+if (usedPrefix == 'a' || usedPrefix == 'A') return;
+if (!text) return conn.reply(m.chat, `*${lenguajeGB['smsAvisoMG']()}𝙄𝙉𝙂𝙍𝙀𝙎𝙀 𝙐𝙉𝘼 𝙋𝙀𝙏𝙄𝘾𝙄𝙊𝙉 𝙊 𝙐𝙉𝘼 𝙊𝙍𝘿𝙀𝙉 𝙋𝘼𝙍𝘼 𝙐𝙎𝘼𝙍 𝙇𝘼 𝙁𝙐𝙉𝘾𝙄𝙊𝙉 𝘿𝙀𝙇 𝘾𝙃𝘼𝙏𝙂𝙋𝙏\n\n❏ 𝙀𝙅𝙀𝙈𝙋𝙇𝙊 𝘿𝙀 𝙋𝙀𝙏𝙄𝘾𝙄𝙊𝙉𝙀𝙎 𝙔 𝙊𝙍𝘿𝙀𝙉𝙀𝙎\n❏ ${usedPrefix + command} Recomienda un top 10 de películas de acción\n❏ ${usedPrefix + command} Codigo en JS para un juego de cartas` , m, {contextInfo: { externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: mg, body: '𝐒𝐮𝐩𝐞𝐫 𝐁𝐨𝐭 𝐃𝐞 𝐖𝐡𝐚𝐭𝐬𝐀𝐩𝐩', previewType: 0, thumbnail: imagen4, sourceUrl: redes.getRandom()}}})
+try {
+conn.sendPresenceUpdate('recording', m.chat);
+async function getOpenAIChatCompletion(texto) {
+const openaiAPIKey = global.openai_key;
+let chgptdb = global.chatgpt.data.users[m.sender];
+chgptdb.push({ role: 'user', content: texto });
+const url = "https://api.openai.com/v1/chat/completions";
+const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${openaiAPIKey}` };
+const data = { "model": "gpt-3.5-turbo", "messages": [{ "role": "system", "content": sistema1 }, ...chgptdb, ]};
+const response = await fetch(url, {method: "POST", headers: headers, body: JSON.stringify(data)});
+const result = await response.json();
+const finalResponse = result.choices[0].message.content;
+return finalResponse;
+};
+let respuesta = await getOpenAIChatCompletion(text);
+if (respuesta == 'error' || respuesta == '' || !respuesta) return XD; // causar error undefined para usar otra api
+const audio1 = await tts(respuesta, idioma);
+await conn.sendMessage(m.chat, {audio: audio1, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});
+} catch {
+try {
+const botIA222 = await openaiii.createCompletion({model: 'text-davinci-003', prompt: text, temperature: 0.3, max_tokens: 4097, stop: ['Ai:', 'Human:'], top_p: 1, frequency_penalty: 0.2, presence_penalty: 0});
+if (botIA222.data.choices[0].text == 'error' || botIA222.data.choices[0].text == '' || !botIA222.data.choices[0].text) return XD; // causar error undefined para usar otra api
+const audio2 = await tts(botIA222.data.choices[0].text, idioma);
+await conn.sendMessage(m.chat, {audio: audio2, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});    
+} catch {
+try {
+const fgapi1 = await fetch(`https://api-fgmods.ddns.net/api/info/openai?text=${text}&symsg=${sistema1}&apikey=XlwAnX8d`);
+const fgjson1 = await fgapi1.json();
+if (fgjson1.result == 'error' || fgjson1.result == '' || !fgjson1.result) return XD; // causar error undefined para lanzar msg de error
+const audio3 = await tts(fgjson1.result, idioma);
+await conn.sendMessage(m.chat, {audio: audio3, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});    
+} catch {
+try {
+const vihangayt1 = await fetch(`https://vihangayt.me/tools/chatgpt?q=${text}`);
+const vihangaytjson1 = await vihangayt1.json();
+if (vihangaytjson1.data == 'error' || vihangaytjson1.data == '' || !vihangaytjson1.data) return XD; // causar error undefined para usar otra api
+const audio4 = await tts(vihangaytjson1.data, idioma);
+await conn.sendMessage(m.chat, {audio: audio4, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});            
+} catch {
+try {
+const vihangayt2 = await fetch(`https://vihangayt.me/tools/chatgpt2?q=${text}`);
+const vihangaytjson2 = await vihangayt2.json();
+if (vihangaytjson2.data == 'error' || vihangaytjson2.data == '' || !vihangaytjson2.data) return XD; // causar error undefined para usar otra api
+const audio5 = await tts(vihangaytjson2.data, idioma);
+await conn.sendMessage(m.chat, {audio: audio5, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});            
+} catch {
+try {
+const vihangayt3 = await fetch(`https://vihangayt.me/tools/chatgpt3?q=${text}`);
+const vihangaytjson3 = await vihangayt3.json();
+if (vihangaytjson3.data == 'error' || vihangaytjson3.data == '' || !vihangaytjson3.data) return XD; // causar error undefined para usar otra api
+const audio6 = await tts(vihangaytjson3.data, idioma);
+await conn.sendMessage(m.chat, {audio: audio6, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});            
+} catch {
+try {
+const tioress22 = await fetch(`https://api.lolhuman.xyz/api/openai?apikey=${lolkeysapi}&text=${text}&user=${m.sender}`);
+const hasill22 = await tioress22.json();
+if (hasill22.result == 'error' || hasill22.result == '' || !hasill22.result) return XD; // causar error undefined para usar otra api
+const hasill22_result = await translate(`${hasill22.result}`, {to: idioma, autoCorrect: true});
+const audio7 = await tts(hasill22_result.text, idioma);
+await conn.sendMessage(m.chat, {audio: audio7, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});            
+} catch {
+try {
+const searchString2 = ' Indonesia ';
+const replacementString2 = ' español ';
+const rres = await fetch(`https://api.ibeng.tech/api/others/chatgpt?q=Hola&apikey=eMlBNRzUXv`);
+const jjson = await rres.json();
+if (jjson.data == 'error' || jjson.data == '' || !jjson.data) return XD; // causar error undefined para usar otra api
+const hahaha = await translate(`${jjson.data}`, {to: idioma, autoCorrect: true});
+const sextS = hahaha.text;
+const replacedText = sextS.replace(searchString2, replacementString2).trim();
+const audio8 = await tts(replacedText, idioma);
+await conn.sendMessage(m.chat, {audio: audio8, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});            
+} catch {
+try {
+const akuariapi2 = await fetch(`https://api.akuari.my.id/ai/gpt?chat=${text}`);
+const akuariapijson2 = await akuariapi2.json();
+if (akuariapijson2.respon == 'error' || akuariapijson2.respon == '' || !akuariapijson2.respon) return XD; // causar error undefined para lanzar msg de error
+const akuariapiresult2 = await translate(`${akuariapijson2.respon}`, {to: 'es', autoCorrect: true});
+const audio9 = await tts(akuariapiresult2.text, idioma);
+await conn.sendMessage(m.chat, {audio: audio9, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});                   
+} catch {
+try {
+const akuariapi1 = await fetch(`https://api.akuari.my.id/ai/gbard?chat=${text}`);
+const akuariapijson1 = await akuariapi1.json();
+if (akuariapijson1.respon == 'error' || akuariapijson1.respon == '' || !akuariapijson1.respon) return XD; // causar error undefined para usar otra api
+const akuariapiresult1 = await translate(`${akuariapijson1.respon}`, {to: 'es', autoCorrect: true});
+const audio10 = await tts(akuariapiresult1.text, idioma);
+await conn.sendMessage(m.chat, {audio: audio10, fileName: 'error.mp3', mimetype: 'audio/mpeg', ptt: true}, {quoted: m});                           
+} catch {
+}}}}}}}}}}}
+handler.command = /^(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz|Lolivoz|LoliBotvoz|gptvoz|ai_voz|ai_voce)$/i;
+handler.register = true
+export default handler;
 
-import _0x58f664 from'node-fetch';import _0x47a831 from'node-gtts';import{readFileSync,unlinkSync}from'fs';import{join}from'path';import _0x50c751 from'axios';import _0x4553f4 from'@vitalets/google-translate-api';import{Configuration,OpenAIApi}from'openai';const configuration=new Configuration({'organization':global['openai_org_id'],'apiKey':global['openai_key']}),openaiii=new OpenAIApi(configuration),idioma='es',sistema1='Actuaras\x20como\x20un\x20Bot\x20de\x20WhatsApp\x20el\x20cual\x20fue\x20creado\x20por\x20OFC-YOVANI,\x20tu\x20seras\x20⫷᭄©𝙷𝙰𝙳𝙴𝚂-𝙱𝙾𝚃-𝙾𝙼𝙴𝙶𝙰﹏✍.',handler=async(_0xae786,{conn:_0x49fb3e,text:_0x3cb034,usedPrefix:_0x5ae81d,command:_0x4de4fb})=>{if(_0x5ae81d=='a'||_0x5ae81d=='A')return;if(!_0x3cb034)throw'*[❗]\x20𝙸𝙽𝙶𝚁𝙴𝚂𝙴\x20𝚄𝙽𝙰\x20𝙿𝙴𝚃𝙸𝙲𝙸𝙾𝙽\x20𝙾\x20𝚄𝙽𝙰\x20𝙾𝚁𝙳𝙴𝙽\x20𝙿𝙰𝚁𝙰\x20𝚄𝚂𝙰𝚁\x20𝙻𝙰\x20𝙵𝚄𝙽𝙲𝙸𝙾𝙽\x20𝙳𝙴\x20𝙲𝙷𝙰𝚃𝙶𝙿𝚃*\x0a\x0a*—◉\x20𝙴𝙹𝙴𝙼𝙿𝙻𝙾𝚂\x20𝙳𝙴\x20𝙿𝙴𝚃𝙸𝙲𝙸𝙾𝙽𝙴𝚂\x20𝚈\x20𝙾𝚁𝙳𝙴𝙽𝙴𝚂*\x0a*◉\x20'+(_0x5ae81d+_0x4de4fb)+'\x20Reflexion\x20sobre\x20la\x20serie\x20Merlina\x202022\x20de\x20netflix*\x0a*◉\x20'+(_0x5ae81d+_0x4de4fb)+'\x20Codigo\x20en\x20JS\x20para\x20un\x20juego\x20de\x20cartas*';try{_0x49fb3e['sendPresenceUpdate']('composing',_0xae786['chat']);async function _0x5bd7e3(_0x86659b){const _0x13060c=global['openai_key'];let _0x5765b9=global['chatgpt']['data']['users'][_0xae786['sender']];_0x5765b9['push']({'role':'user','content':_0x86659b});const _0xe1207c='https://api.openai.com/v1/chat/completions',_0x2ae815={'Content-Type':'application/json','Authorization':'Bearer\x20'+_0x13060c},_0x54b394={'model':'gpt-3.5-turbo','messages':[{'role':'system','content':sistema1},..._0x5765b9]},_0x408598=await _0x58f664(_0xe1207c,{'method':'POST','headers':_0x2ae815,'body':JSON['stringify'](_0x54b394)}),_0x5ea273=await _0x408598['json'](),_0xa78405=_0x5ea273['choices'][0x0]['message']['content'];return _0xa78405;};let _0x1f643e=await _0x5bd7e3(_0x3cb034);if(_0x1f643e=='error'||_0x1f643e==''||!_0x1f643e)return XD;const _0x5970d5=await tts(_0x1f643e,idioma);await _0x49fb3e['sendMessage'](_0xae786['chat'],{'audio':_0x5970d5,'fileName':'error.mp3','mimetype':'audio/mpeg','ptt':!![]},{'quoted':_0xae786});}catch{try{_0x49fb3e['sendPresenceUpdate']('composing',_0xae786['chat']);const _0x2d55e7=await openaiii['createCompletion']({'model':'text-davinci-003','prompt':_0x3cb034,'temperature':0.3,'max_tokens':0x1001,'stop':['Ai:','Human:'],'top_p':0x1,'frequency_penalty':0.2,'presence_penalty':0x0});if(_0x2d55e7['data']['choices'][0x0]['text']=='error'||_0x2d55e7['data']['choices'][0x0]['text']==''||!_0x2d55e7['data']['choices'][0x0]['text'])return XD;const _0x4931ce=await tts(_0x2d55e7['data']['choices'][0x0]['text'],idioma);await _0x49fb3e['sendMessage'](_0xae786['chat'],{'audio':_0x4931ce,'fileName':'error.mp3','mimetype':'audio/mpeg','ptt':!![]},{'quoted':_0xae786});}catch{try{_0x49fb3e['sendPresenceUpdate']('composing',_0xae786['chat']);const _0x269e9b=await _0x58f664('https://api-fgmods.ddns.net/api/info/openai?text='+_0x3cb034+'&symsg='+sistema1+'&apikey=XlwAnX8d'),_0x19cab5=await _0x269e9b['json']();if(_0x19cab5['result']=='error'||_0x19cab5['result']==''||!_0x19cab5['result'])return XD;const _0x470071=await tts(_0x19cab5['result'],idioma);await _0x49fb3e['sendMessage'](_0xae786['chat'],{'audio':_0x470071,'fileName':'error.mp3','mimetype':'audio/mpeg','ptt':!![]},{'quoted':_0xae786});}catch{try{_0x49fb3e['sendPresenceUpdate']('composing',_0xae786['chat']);const _0x4bb20e=await _0x58f664('https://vihangayt.me/tools/chatgpt?q='+_0x3cb034),_0x5924db=await _0x4bb20e['json']();if(_0x5924db['data']=='error'||_0x5924db['data']==''||!_0x5924db['data'])return XD;const _0x47b8db=await tts(_0x5924db['data'],idioma);await _0x49fb3e['sendMessage'](_0xae786['chat'],{'audio':_0x47b8db,'fileName':'error.mp3','mimetype':'audio/mpeg','ptt':!![]},{'quoted':_0xae786});}catch{try{_0x49fb3e['sendPresenceUpdate']('composing',_0xae786['chat']);const _0x18c147=await _0x58f664('https://vihangayt.me/tools/chatgpt2?q='+_0x3cb034),_0x5e0ab9=await _0x18c147['json']();if(_0x5e0ab9['data']=='error'||_0x5e0ab9['data']==''||!_0x5e0ab9['data'])return XD;const _0x58de00=await tts(_0x5e0ab9['data'],idioma);await _0x49fb3e['sendMessage'](_0xae786['chat'],{'audio':_0x58de00,'fileName':'error.mp3','mimetype':'audio/mpeg','ptt':!![]},{'quoted':_0xae786});}catch{try{_0x49fb3e['sendPresenceUpdate']('composing',_0xae786['chat']);const _0x4ebc21=await _0x58f664('https://vihangayt.me/tools/chatgpt3?q='+_0x3cb034),_0x51142a=await _0x4ebc21['json']();if(_0x51142a['data']=='error'||_0x51142a['data']==''||!_0x51142a['data'])return XD;const _0x4aaab7=await tts(_0x51142a['data'],idioma);await _0x49fb3e['sendMessage'](_0xae786['chat'],{'audio':_0x4aaab7,'fileName':'error.mp3','mimetype':'audio/mpeg','ptt':!![]},{'quoted':_0xae786});}catch{try{_0x49fb3e['sendPresenceUpdate']('composing',_0xae786['chat']);const _0x5ba420=await _0x58f664('https://api.lolhuman.xyz/api/openai?apikey='+lolkeysapi+'&text='+_0x3cb034+'&user='+_0xae786['sender']),_0x191c48=await _0x5ba420['json']();if(_0x191c48['result']=='error'||_0x191c48['result']==''||!_0x191c48['result'])return XD;const _0x5b5205=await _0x4553f4(''+_0x191c48['result'],{'to':idioma,'autoCorrect':!![]}),_0x253e80=await tts(_0x5b5205['text'],idioma);await _0x49fb3e['sendMessage'](_0xae786['chat'],{'audio':_0x253e80,'fileName':'error.mp3','mimetype':'audio/mpeg','ptt':!![]},{'quoted':_0xae786});}catch{try{_0x49fb3e['sendPresenceUpdate']('composing',_0xae786['chat']);const _0x25cd5d='\x20Indonesia\x20',_0x56bb41='\x20español\x20',_0x51a075=await _0x58f664('https://api.ibeng.tech/api/others/chatgpt?q=Hola&apikey=eMlBNRzUXv'),_0x5e0019=await _0x51a075['json']();if(_0x5e0019['data']=='error'||_0x5e0019['data']==''||!_0x5e0019['data'])return XD;const _0x1d15e2=await _0x4553f4(''+_0x5e0019['data'],{'to':idioma,'autoCorrect':!![]}),_0x17284a=_0x1d15e2['text'],_0x442011=_0x17284a['replace'](_0x25cd5d,_0x56bb41)['trim'](),_0x21edaa=await tts(_0x442011,idioma);await _0x49fb3e['sendMessage'](_0xae786['chat'],{'audio':_0x21edaa,'fileName':'error.mp3','mimetype':'audio/mpeg','ptt':!![]},{'quoted':_0xae786});}catch{try{_0x49fb3e['sendPresenceUpdate']('composing',_0xae786['chat']);const _0x1301d2=await _0x58f664('https://api.akuari.my.id/ai/gpt?chat='+_0x3cb034),_0xf381d7=await _0x1301d2['json']();if(_0xf381d7['respon']=='error'||_0xf381d7['respon']==''||!_0xf381d7['respon'])return XD;const _0x10945a=await _0x4553f4(''+_0xf381d7['respon'],{'to':'es','autoCorrect':!![]}),_0x24b16c=await tts(_0x10945a['text'],idioma);await _0x49fb3e['sendMessage'](_0xae786['chat'],{'audio':_0x24b16c,'fileName':'error.mp3','mimetype':'audio/mpeg','ptt':!![]},{'quoted':_0xae786});}catch{try{_0x49fb3e['sendPresenceUpdate']('composing',_0xae786['chat']);const _0x9e1d87=await _0x58f664('https://api.akuari.my.id/ai/gbard?chat='+_0x3cb034),_0x5ac421=await _0x9e1d87['json']();if(_0x5ac421['respon']=='error'||_0x5ac421['respon']==''||!_0x5ac421['respon'])return XD;const _0x313661=await _0x4553f4(''+_0x5ac421['respon'],{'to':'es','autoCorrect':!![]}),_0x2a9ce7=await tts(_0x313661['text'],idioma);await _0x49fb3e['sendMessage'](_0xae786['chat'],{'audio':_0x2a9ce7,'fileName':'error.mp3','mimetype':'audio/mpeg','ptt':!![]},{'quoted':_0xae786});}catch{throw'*[❗]\x20𝙴𝚁𝚁𝙾𝚁,\x20𝚅𝚄𝙴𝙻𝚅𝙰\x20𝙰\x20𝙸𝙽𝚃𝙴𝙽𝚃𝙰𝚁𝙻𝙾*';}}}}}}}}}}};handler['command']=/^(openaivoz|chatgptvoz|iavoz|robotvoz|openai2voz|chatgpt2voz|ia2voz|robot2voz)$/i,handler['register']=!![],handler['group']=!![];export default handler;async function tts(_0x410420='error',_0x4ebce8='es'){return new Promise((_0xe4c871,_0x4986a7)=>{try{const _0x2f23ca=_0x47a831(_0x4ebce8),_0xa27a93=join(global['__dirname'](import.meta['url']),'../tmp',0x1*new Date()+'.wav');_0x2f23ca['save'](_0xa27a93,_0x410420,()=>{_0xe4c871(readFileSync(_0xa27a93)),unlinkSync(_0xa27a93);});}catch(_0x3dbc6d){_0x4986a7(_0x3dbc6d);}});}
+async function tts(text = 'error', lang = 'es') {
+return new Promise((resolve, reject) => {
+try {
+const tts = gtts(lang);
+const filePath = join(global.__dirname(import.meta.url), '../tmp', (1 * new Date) + '.wav');
+tts.save(filePath, text, () => {
+resolve(readFileSync(filePath));
+unlinkSync(filePath);
+});
+} catch (e) {
+reject(e);
+}
+});
+}
